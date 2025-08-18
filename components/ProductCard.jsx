@@ -55,7 +55,15 @@ const ProductCard = ({ product }) => {
           {product.offerPrice}
         </p>
         <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-sony hover:text-white transition">
-          Buy now
+          {/* Buy now */}
+
+          <a
+            href={`https://wa.me/923335613157?text=Hi, I am interested in buying ${product.name} for ${currency}${product.offerPrice}.. Is it still available ?`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Enquire Now
+          </a>
         </button>
       </div>
     </div>
