@@ -27,7 +27,7 @@ const ContactUsPage = () => {
           </div>
 
           <button className="mt-6 bg-sony hover:shadow-md hover:shadow-white transition-all px-6 py-3 rounded-lg font-semibold shadow-lg">
-            Send a Message
+            <a href={`https://wa.me/923165428934`}>Send a Message</a>
           </button>
         </div>
 

@@ -1,7 +1,9 @@
 import React from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
-import { PhoneIcon } from "lucide-react";
+import { MailOpenIcon, PhoneIcon } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { MailOpen } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -43,9 +45,25 @@ const Footer = () => {
         <div className="w-1/2 flex items-start justify-start md:justify-center">
           <div>
             <h2 className="font-medium text-white mb-5">Get in touch</h2>
-            <div className="text-sm space-y-2">
-              <p>+92-3335613157</p>
-              <p>iSquareGadgets@gmail.com</p>
+            <div className="text-sm space-y-2 ">
+              <div className="flex items-center space-x-2">
+                <FaWhatsapp className="text-green-500 w-4 h-4 " />
+                <a
+                  href={`https://wa.me/923165428934`}
+                  className="hover:text-white"
+                >
+                  +92-3165428934
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MailOpenIcon className="text-green-500 w-4 h-4" />
+                <a
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=isquaregadgets@gmail.com`}
+                  className="hover:text-white"
+                >
+                  iSquareGadgets@gmail.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
