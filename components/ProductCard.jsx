@@ -54,7 +54,7 @@ const ProductCard = ({ product }) => {
           {currency}
           {product.offerPrice}
         </p>
-        <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-sony hover:text-white transition">
+        <button className="  px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-sony hover:text-white transition">
           {/* Buy now */}
 
           <a
