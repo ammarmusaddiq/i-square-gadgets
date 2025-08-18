@@ -17,6 +17,10 @@ export async function POST(request) {
       newAddress,
     });
   } catch (error) {
-    return NextResponse.json({ success: false, message: error.message });
+    console.log(error.message);
+    return NextResponse.json({
+      success: false,
+      message: "Please sign in to make an order.",
+    });
   }
 }
