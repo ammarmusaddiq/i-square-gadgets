@@ -184,7 +184,7 @@ export const AppContextProvider = (props) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY;
   const router = useRouter();
   const { user } = useUser();
-  const { getToken } = useAuth();
+  const { signOut, getToken } = useAuth();
   const [products, setProducts] = useState([]);
   const [userData, setUserData] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
@@ -336,6 +336,15 @@ export const AppContextProvider = (props) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      await signOut(); // Clerk logout
+      router.push("/"); // redirect to login page
+    } catch (error) {
+      toast.error("Logout failed: " + error.message);
+    }
+  };
+
   // -------------------
   // Effects
   // -------------------
@@ -371,6 +380,7 @@ export const AppContextProvider = (props) => {
     getCartAmount,
     ratings,
     updateRating,
+    logout,
   };
 
   return (

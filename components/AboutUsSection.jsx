@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import shop from "../assets/shop.jpg";
 
 const AboutUsSection = () => {
   return (
@@ -9,9 +10,9 @@ const AboutUsSection = () => {
         <div className="relative w-full h-80 md:h-[450px] rounded-lg overflow-hidden shadow-lg">
           {/* Glow Effect */}
           <div className="absolute -inset-4 bg-red-600 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-
+          {console.log(shop)}
           <img
-            src="#" // Change to your image path
+            src={shop.src} // Change to your image path
             alt="About Us"
             fill
             className="object-cover relative z-10 rounded-lg"
