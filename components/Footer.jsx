@@ -3,7 +3,8 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { MailOpenIcon, PhoneIcon } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { MailOpen } from "lucide-react";
+import { HomeIcon } from "lucide-react";
+import { ContactIcon } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -24,19 +25,31 @@ const Footer = () => {
             <h2 className="font-medium text-white mb-5">Company</h2>
             <ul className="text-sm space-y-2">
               <li>
-                <a className="hover:text-white transition" href="/">
-                  Home
-                </a>
+                <div className="flex items-center space-x-2">
+                  <HomeIcon className="text-green-500 w-4 h-4 " />
+                  <a className="hover:text-white transition" href="/">
+                    Home
+                  </a>
+                </div>
               </li>
               <li>
-                <a className="hover:text-white transition" href="/about-us">
-                  About us
-                </a>
+                <div className="flex items-center space-x-2">
+                  <ContactIcon className="text-green-500 w-4 h-4 " />
+                  <a className="hover:text-white transition" href="/about-us">
+                    About us
+                  </a>
+                </div>
               </li>
               <li>
-                <a className="hover:text-white  transition" href="/contact-us">
-                  Contact us
-                </a>
+                <div className="flex items-center space-x-2">
+                  <PhoneIcon className="text-green-500 w-4 h-4 " />
+                  <a
+                    className="hover:text-white  transition"
+                    href="/contact-us"
+                  >
+                    Contact us
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
