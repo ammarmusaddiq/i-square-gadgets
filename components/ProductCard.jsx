@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
           {/* Buy now */}
 
           <a
-            href={`https://wa.me/923165428934?text=Hi, I am interested in buying ${product.name} for ${currency}${product.offerPrice}.. Is it still available ? Link is https://i-square-gadgets.vercel.app/product/${product._id}`}
+            href={`https://wa.me/923165428934?text=Hi, I am interested in buying ${product.name} for ${currency}${product.offerPrice}.. Is it still available ? Link is https://www.isquaregadgets.com/product/${product._id}`}
             target="_blank"
             rel="noopener noreferrer"
           >
