@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="w-4/5">
           <Image className="w-28 md:w-32" src={assets.logo} alt="logo" />
           <p className="mt-6 text-sm">
-            <strong className="text-white">I-Square Gadgets</strong> offers all
+            <strong className="text-white">iSquare Gadgets</strong> offers all
             types of used mobiles in Saddar Singapore Plaza. All kind of
             flagship phones like OnePlus , Apple , Samsung , Google , RedMagic
             etc are available.

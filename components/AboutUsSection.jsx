@@ -22,13 +22,13 @@ const AboutUsSection = () => {
         {/* Right Side - Text */}
         <div className="relative z-20">
           <h2 className="text-4xl font-bold mb-6">About Us</h2>
-          <p className="text-lg text-gray-300 leading-relaxed mb-6">
+          <p className="text-lg text-justify  text-gray-300 leading-relaxed mb-6">
             We are passionate about delivering exceptional services to our
             customers. Our team is dedicated to providing high-quality products,
             innovative solutions, and outstanding support that exceeds
             expectations.
           </p>
-          <p className="text-lg text-gray-300 leading-relaxed mb-8">
+          <p className="text-lg text-gray-300 text-justify leading-relaxed mb-8">
             With years of experience and a commitment to excellence, we strive
             to create a positive impact and build long-lasting relationships
             with our clients.
