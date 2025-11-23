@@ -54,6 +54,8 @@ import samsung from "./samsung.jpeg";
 import pixel from "./pixel.jpeg";
 import apple from "./apple.jpeg";
 import oneplus from "./oneplus.jpeg";
+import apple1 from "./apple1.png";
+import pixel1 from "./pixel1.png";
 
 export const assets = {
   logo,
@@ -112,7 +114,8 @@ export const assets = {
   pixel,
   apple,
   oneplus,
-  
+  apple1,
+  pixel1,
   
 };
 
