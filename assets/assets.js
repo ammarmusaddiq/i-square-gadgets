@@ -50,6 +50,10 @@ import product_details_page_apple_earphone_image5 from "./product_details_page_a
 import mobile_Category from "./mobile_Category.png";
 import earbud_Category from "./earbud_Category.png";
 import watch_Category from "./watch_Category.png";
+import samsung from "./samsung.jpeg";
+import pixel from "./pixel.jpeg";
+import apple from "./apple.jpeg";
+import oneplus from "./oneplus.jpeg";
 
 export const assets = {
   logo,
@@ -104,6 +108,12 @@ export const assets = {
   mobile_Category,
   earbud_Category,
   watch_Category,
+  samsung,
+  pixel,
+  apple,
+  oneplus,
+  
+  
 };
 
 export const BagIcon = () => {

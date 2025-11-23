@@ -8,27 +8,35 @@ const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
-      title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
-      offer: "Limited Time Offer 30% Off",
+      title: "Experience the Future – Meet the iPhone 17 Pro Max in Stunning Orange.",
+      // offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
       buttonText2: "Find more",
-      imgSrc: assets.header_headphone_image,
+      imgSrc: assets.apple,
     },
     {
       id: 2,
-      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
-      offer: "Hurry up only few lefts!",
+      title: "Redefine Intelligent Photography – Meet the Google Pixel 10 Pro XL.",
+      // offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
       buttonText2: "Explore Deals",
-      imgSrc: assets.header_playstation_image,
+      imgSrc: assets.pixel,
     },
     {
       id: 3,
-      title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
-      offer: "Exclusive Deal 40% Off",
+      title: "Unmatched Power & Precision – Discover the Samsung S25 Ultra.",
+      // offer: "Exclusive Deal 40% Off",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
-      imgSrc: assets.header_macbook_image,
+      imgSrc: assets.samsung,
+    },
+    {
+      id: 4,
+      title: "Speed Meets Perfection – Experience the OnePlus 15 Like Never Before.",
+      // offer: "Exclusive Deal 40% Off",
+      buttonText1: "Order Now",
+      buttonText2: "Learn More",
+      imgSrc: assets.oneplus,
     },
   ];
 
@@ -90,7 +98,7 @@ const HeaderSlider = () => {
             <div className="flex items-center flex-1 justify-center">
               <Image
                 className="md:w-72 w-48"
-                src={slide.imgSrc}
+                src={slide.imgSrc} 
                 alt={`Slide ${index + 1}`}
               />
             </div>
