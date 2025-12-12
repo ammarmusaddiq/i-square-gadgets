@@ -3,22 +3,24 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 
-const ProductCard = ({ product }) => {
+
+const ProductCard = async ({ product }) => {
   const { currency, router } = useAppContext();
 
+  
   return (
-    <div
+    <div 
       onClick={() => {
         router.push("/product/" + product._id);
         scrollTo(0, 0);
       }}
-      className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer"
+      className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer hover:scale-105 transition duration-300"
     >
-      <div className="cursor-pointer group relative bg-gray-500/10 rounded-lg w-full h-52 flex items-center justify-center border group-hover:scale-105">
+      <div className="cursor-pointer group relative bg-gray-500/10 rounded-lg w-full h-52 flex items-center justify-center border  transition-shadow duration-300 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.7)]">
         <Image
           src={product.image[0]}
           alt={product.name}
-          className="group-hover:scale-105 transition object-contain w-4/5 h-4/5 md:w-full md:h-full"
+          className=" transition object-contain w-4/5 h-4/5 md:w-full md:h-full "
           width={800}
           height={600}
         />

@@ -124,6 +124,8 @@ const ProductList = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10;
 
   const fetchSellerProduct = async () => {
     try {
@@ -135,6 +137,7 @@ const ProductList = () => {
       if (data.success) {
         setProducts(data.products);
         setLoading(false);
+        setCurrentPage(1); // Reset to first page when products are fetched
       } else {
         toast.error(data.message);
       }
@@ -142,6 +145,31 @@ const ProductList = () => {
       toast.error(error.message);
     }
   };
+
+  const markAsSold = async (id) => {
+    try {
+      const token = await getToken();
+      const { data } = await axios.put(`/api/product/${id}`, {sold: true}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (data.success) {
+        toast.success("Marked as sold");
+  
+        // Update state UI
+        setProducts(prev =>
+          prev.map(p =>
+            p._id === id ? { ...p, sold: true } : p
+          )
+        );
+      } else {
+        toast.error(data.message);
+      }
+    
+} catch (error) {
+      toast.error(error.message);
+    }
+  }
 
   const deleteProduct = async (id) => {
     try {
@@ -152,7 +180,15 @@ const ProductList = () => {
 
       if (data.success) {
         toast.success("Product deleted successfully");
-        setProducts((prev) => prev.filter((p) => p._id !== id));
+        setProducts((prev) => {
+          const updated = prev.filter((p) => p._id !== id);
+          // Reset to first page if current page becomes empty
+          const newTotalPages = Math.ceil(updated.length / productsPerPage);
+          if (currentPage > newTotalPages && newTotalPages > 0) {
+            setCurrentPage(newTotalPages);
+          }
+          return updated;
+        });
       } else {
         toast.error(data.message);
       }
@@ -167,34 +203,48 @@ const ProductList = () => {
     }
   }, [user]);
 
+  // Calculate pagination
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+ 
+  
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">
       {loading ? (
         <Loading />
       ) : (
-        <div className="w-full md:p-10 p-4">
+        <div className="w-full  md:p-10 p-4">
           <h2 className="pb-4 text-lg font-medium text-white">All Products</h2>
-          <div className="flex flex-col items-center max-w-4xl w-full overflow-hidden rounded-md bg-white border border-gray-500/20">
+          <div className="flex flex-col items-center  w-full overflow-hidden rounded-md bg-white border border-gray-500/20">
             <table className="table-fixed w-full overflow-hidden">
               <thead className="text-gray-900 text-sm text-left">
                 <tr>
-                  <th className="w-2/3 md:w-2/5 px-4 py-3 font-medium truncate">
+                  <th className="w-2/3 md:w-2/5 px-4 py-3 font-medium truncate text-center">
                     Product
                   </th>
-                  <th className="px-4 py-3 font-medium truncate max-sm:hidden">
+                  <th className="px-4 py-3 font-medium truncate max-sm:hidden text-center">
                     Category
                   </th>
-                  <th className="px-4 py-3 font-medium truncate">Price</th>
-                  <th className="px-4 py-3 font-medium truncate max-sm:hidden">
+                  <th className="px-4 py-3 font-medium truncate text-center">Price</th>
+                  <th className="px-4 py-3 font-medium truncate max-sm:hidden text-center">
                     Action
                   </th>
                 </tr>
               </thead>
               <tbody className="text-sm text-gray-500">
-                {products.map((product, index) => (
+                {currentProducts.map((product, index) => (
                   <tr key={index} className="border-t border-gray-500/20">
-                    <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate">
-                      <div className="bg-gray-500/10 rounded p-2">
+                    <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate text-center">
+                      <div className="relative bg-gray-500/10 rounded p-2">
                         <Image
                           src={product.image[0]}
                           alt="product Image"
@@ -202,14 +252,19 @@ const ProductList = () => {
                           width={1280}
                           height={720}
                         />
+                        {product.sold && (
+                           <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xs font-bold rounded">
+                              SOLD
+                           </div>
+                        )}
                       </div>
                       <span className="truncate w-full">{product.name}</span>
                     </td>
-                    <td className="px-4 py-3 max-sm:hidden">
+                    <td className="px-4 py-3 max-sm:hidden text-center">
                       {product.category}
                     </td>
-                    <td className="px-4 py-3">Rs.{product.offerPrice}</td>
-                    <td className="px-4 py-3 max-sm:hidden">
+                    <td className="px-4 py-3 text-center">Rs.{product.offerPrice}</td>
+                    <td className="px-4 py-3 max-sm:hidden text-center">
                       <div className="flex items-center gap-2">
                         {/* Visit Button */}
                         <button
@@ -231,6 +286,14 @@ const ProductList = () => {
                         >
                           <span className="hidden md:block">Delete</span>
                         </button>
+
+                        {/* Mark As Sold Button */}
+                        <button
+                          onClick={() => markAsSold(product._id)}
+                          className="flex items-center gap-1 px-1.5 md:px-3.5 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                        >
+                          <span className="hidden md:block">Mark As Sold</span>
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -238,11 +301,54 @@ const ProductList = () => {
               </tbody>
             </table>
           </div>
+          
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-6">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-white text-gray-900 rounded-md border border-gray-500/20 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
+              >
+                Previous
+              </button>
+              
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-3 py-2 rounded-md border transition ${
+                      currentPage === page
+                        ? "bg-sony text-white border-sony"
+                        : "bg-white text-gray-900 border-gray-500/20 hover:bg-gray-100"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+              
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 bg-white text-gray-900 rounded-md border border-gray-500/20 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
+              >
+                Next
+              </button>
+            </div>
+          )}
+          
+          {/* Page Info */}
+          {products.length > 0 && (
+            <div className="text-center mt-4 text-gray-400 text-sm">
+              Showing {indexOfFirstProduct + 1} - {Math.min(indexOfLastProduct, products.length)} of {products.length} products
+            </div>
+          )}
         </div>
       )}
       {/* <Footer /> */}
     </div>
   );
 };
-
 export default ProductList;
