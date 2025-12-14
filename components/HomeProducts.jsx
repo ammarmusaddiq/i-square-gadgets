@@ -6,6 +6,12 @@ const HomeProducts = () => {
   const { products, router } = useAppContext();
 
   return (
+    <>
+    {/* <div className="absolute top-40 left-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl"/>
+    <div className="absolute top-400 right-0 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl"/>
+    <div className="absolute top-400 left-0 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl "/> */}
+    
+    
     <div className="flex flex-col items-center pt-14">
       {/* <p className="text-2xl font-medium text-white text-left w-full">
         Popular products
@@ -28,6 +34,7 @@ const HomeProducts = () => {
         See more
       </button>
     </div>
+    </>
   );
 };
 

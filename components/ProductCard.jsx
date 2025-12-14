@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 
 
-const ProductCard = async ({ product }) => {
+const ProductCard = ({ product }) => {
   const { currency, router } = useAppContext();
 
   
@@ -20,7 +20,7 @@ const ProductCard = async ({ product }) => {
         <Image
           src={product.image[0]}
           alt={product.name}
-          className=" transition object-contain w-4/5 h-4/5 md:w-full md:h-full "
+          className=" transition object-contain w-4/5 h-4/5 md:w-full md:h-full bg-black rounded-lg "
           width={800}
           height={600}
         />
@@ -56,7 +56,7 @@ const ProductCard = async ({ product }) => {
           {currency}
           {product.offerPrice.toLocaleString("en-IN")}
         </p>
-        <button className="  px-4 py-1.5 text-gray-500 border border-white rounded-full text-xs hover:bg-sony hover:text-white transition">
+        <button className=" p-2 text-white border border-white rounded-full text-xs hover:bg-sony hover:text-white transition">
           {/* Buy now */}
 
           <a
